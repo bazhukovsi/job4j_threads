@@ -7,7 +7,7 @@ public class ThreadState {
         System.out.println("Start");
         first.start();
         second.start();
-        while (first.getState() != Thread.State.TERMINATED & second.getState() != Thread.State.TERMINATED) {
+        while (first.getState() != Thread.State.TERMINATED || second.getState() != Thread.State.TERMINATED) {
             System.out.println(Thread.currentThread().getName());
         }
         System.out.println("Work finish!");
