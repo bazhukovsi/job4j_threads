@@ -4,13 +4,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Wget {
     public static void main(String[] args) {
-        AtomicInteger index = new AtomicInteger(1);
         Thread thread = new Thread(
                 () -> {
                     try {
                         Thread.sleep(1000);
                         for (int i = 2; i <= 100; i++) {
-                            System.out.print("\rLoading : " + index.incrementAndGet() + "%");
+                            System.out.print("\rLoading : " + i + "%");
                             Thread.sleep(1000);
                         }
                     } catch (InterruptedException e) {
@@ -19,6 +18,6 @@ public class Wget {
                 }
         );
         thread.start();
-        System.out.print("\rLoading : " + index  + "%");
+        System.out.print("\rLoading : 1 %");
     }
 }
