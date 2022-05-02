@@ -7,17 +7,17 @@ import java.util.function.Predicate;
 
 public class GetContent {
     public synchronized String get(ParseFile parseFile, Predicate<Character> filter) {
-        String output = "";
+        StringBuilder sb = new StringBuilder();
         try (InputStream i = new FileInputStream(parseFile.getFile())) {
             int data;
-            while ((data = i.read()) > 0) {
+            while ((data = i.read()) != -1) {
                 if (filter.test((char) data)) {
-                    output += (char) data;
+                    sb.append((char) data);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return output;
+        return sb.toString();
     }
 }
