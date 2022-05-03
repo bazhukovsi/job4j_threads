@@ -22,7 +22,7 @@ public class ParseFile {
         );
         thread1.start();
         Thread.sleep(1000);
-        saveContent.save("Bazhukov Sergey 1967 year of bithday", parseFile);
+        saveContent.save("Bazhukov Sergey 1967", parseFile);
         Thread thread2 = new Thread(
                 () -> System.out.println(getContent.get(parseFile, i -> i < 0x003A))
         );
