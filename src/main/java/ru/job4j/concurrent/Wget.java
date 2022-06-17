@@ -1,7 +1,5 @@
 package ru.job4j.concurrent;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Wget {
     public static void main(String[] args) {
         Thread thread = new Thread(
