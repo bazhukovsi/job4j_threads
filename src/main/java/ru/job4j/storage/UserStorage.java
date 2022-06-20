@@ -15,28 +15,23 @@ public class UserStorage {
         return users.putIfAbsent(user.getId(), user) == null;
     }
 
-    public synchronized void delete(User user) {
-        users.remove(user.getId(), user);
+    public synchronized boolean delete(User user) {
+        return users.remove(user.getId(), user);
     }
 
     public synchronized boolean update(User user) {
         return users.replace(user.getId(), user) != null;
     }
 
-    public synchronized void transfer(int fromId, int toId, int amount) {
+    public synchronized boolean transfer(int fromId, int toId, int amount) {
+        boolean retVal = false;
         User sender = users.get(fromId);
         User receiver = users.get(toId);
         if (sender != null && receiver != null && sender.getAmount() > amount) {
-            delete(sender);
-            delete(receiver);
-            add(new User(fromId, sender.getAmount() - amount));
-            add(new User(toId, receiver.getAmount() + amount));
-        } else {
-            System.out.println("Недостаточно средств для перевода.");
+            sender.setAmount(sender.getAmount() - amount);
+            receiver.setAmount(receiver.getAmount() + amount);
+            return true;
         }
-    }
-
-    public synchronized Map<Integer, User> getUsers() {
-        return users;
+        return retVal;
     }
 }
