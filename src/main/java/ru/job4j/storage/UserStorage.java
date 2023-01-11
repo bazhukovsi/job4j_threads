@@ -1,6 +1,5 @@
 package ru.job4j.storage;
 
-import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.HashMap;
@@ -8,7 +7,6 @@ import java.util.Map;
 
 @ThreadSafe
 public class UserStorage {
-    @GuardedBy("this")
     private final Map<Integer, User> users = new HashMap<>();
 
     public synchronized boolean add(User user) {
@@ -30,7 +28,7 @@ public class UserStorage {
         if (sender != null && receiver != null && sender.getAmount() > amount) {
             sender.setAmount(sender.getAmount() - amount);
             receiver.setAmount(receiver.getAmount() + amount);
-            return true;
+            retVal = true;
         }
         return retVal;
     }
