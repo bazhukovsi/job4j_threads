@@ -68,4 +68,5 @@ class AccountStorageTest {
         storage.add(new Account(1, 200));
         assertThat(storage.transfer(1, 2, 200)).isFalse();
     }
+
 }
