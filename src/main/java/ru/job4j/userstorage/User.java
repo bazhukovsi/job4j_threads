@@ -1,4 +1,4 @@
-package ru.job4j.storage;
+package ru.job4j.userstorage;
 
 import java.util.Objects;
 
@@ -48,5 +48,3 @@ public class User {
                 + '}';
     }
 }
-
-

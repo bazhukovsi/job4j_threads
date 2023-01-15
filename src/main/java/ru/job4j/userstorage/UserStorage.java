@@ -1,5 +1,6 @@
-package ru.job4j.storage;
+package ru.job4j.userstorage;
 
+import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.Map;
 
 @ThreadSafe
 public class UserStorage {
+    @GuardedBy("this")
     private final Map<Integer, User> users = new HashMap<>();
 
     public synchronized boolean add(User user) {
@@ -33,3 +35,4 @@ public class UserStorage {
         return retVal;
     }
 }
+
