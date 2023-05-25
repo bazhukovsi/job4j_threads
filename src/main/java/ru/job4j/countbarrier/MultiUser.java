@@ -2,7 +2,7 @@ package ru.job4j.countbarrier;
 
 public class MultiUser {
     public static void main(String[] args) {
-        CountBarrier barrier = new CountBarrier(3);
+        CountBarrier barrier = new CountBarrier(1);
         Thread master = new Thread(
                 () -> {
                     System.out.println(Thread.currentThread().getName() + " started");
