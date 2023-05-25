@@ -17,9 +17,13 @@ public class SimpleBlockingQueue<T> {
         this.count = count;
     }
 
-    public synchronized void offer(T value) throws InterruptedException {
+    public synchronized void offer(T value) {
         while (queue.size() == count) {
-            wait();
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         queue.offer(value);
         notify();
@@ -32,6 +36,10 @@ public class SimpleBlockingQueue<T> {
         T result = queue.poll();
         return result;
 
+    }
+
+    public boolean isEmpty() {
+        return queue.isEmpty();
     }
 
     public static void main(String[] args) throws InterruptedException {
