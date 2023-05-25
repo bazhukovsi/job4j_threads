@@ -31,6 +31,7 @@ public class SimpleBlockingQueue<T> {
         }
         T result = queue.poll();
         return result;
+
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -55,7 +56,7 @@ public class SimpleBlockingQueue<T> {
                     int a = queue.poll();
                     System.out.printf(("%d изъят\n"), a);
                     i++;
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
