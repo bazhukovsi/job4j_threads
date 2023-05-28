@@ -34,6 +34,7 @@ public class SimpleBlockingQueue<T> {
             wait();
         }
         T result = queue.poll();
+        notify();
         return result;
 
     }
