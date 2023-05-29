@@ -34,7 +34,7 @@ public class SimpleBlockingQueue<T> {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(2);
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(5);
         Thread producer = new Thread(() -> {
             int i = 0;
             while (i < 10) {
@@ -42,7 +42,7 @@ public class SimpleBlockingQueue<T> {
                     queue.offer(i);
                     System.out.printf(("%d добавлен\n"), i);
                     i++;
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -55,7 +55,7 @@ public class SimpleBlockingQueue<T> {
                     int a = queue.poll();
                     System.out.printf(("%d изъят\n"), a);
                     i++;
-                    Thread.sleep(500);
+                    Thread.sleep(5000);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
