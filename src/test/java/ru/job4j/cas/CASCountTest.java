@@ -15,8 +15,11 @@ class CASCountTest {
             }
         };
         Thread thread = new Thread(task);
+        Thread thread1 = new Thread(task);
         thread.start();
+        thread1.start();
         thread.join();
-        assertThat(counter.get()).isEqualTo(10);
+        thread1.join();
+        assertThat(counter.get()).isEqualTo(20);
     }
 }
