@@ -9,11 +9,6 @@ public class EmailNotification {
     );
 
     public void emailTo(User user) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         pool.submit(() -> {
             String subject = String.format("Notification %s to email %s",
                     user.getUsername(), user.getEmail());
