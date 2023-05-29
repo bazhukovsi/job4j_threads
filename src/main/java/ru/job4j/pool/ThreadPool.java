@@ -1,6 +1,5 @@
 package ru.job4j.pool;
 
-import ru.job4j.concurrent.ConsoleProgress;
 import ru.job4j.consumer.SimpleBlockingQueue;
 
 import java.util.LinkedList;
@@ -12,7 +11,6 @@ public class ThreadPool {
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>(size);
 
     public ThreadPool() throws InterruptedException {
-        System.out.println("Start constructor");
         for (int i = 0; i < size; i++) {
             threads.add(new Thread(() -> {
                 while (!Thread.currentThread().isInterrupted()) {
@@ -26,7 +24,6 @@ public class ThreadPool {
         }
         threads.forEach(Thread::start);
         Thread.sleep(1000);
-        System.out.println("End constructor");
     }
 
     public void work(Runnable job) throws InterruptedException {
@@ -34,11 +31,7 @@ public class ThreadPool {
     }
 
     public void shutdown() throws InterruptedException {
-        for (int i = 0; i < size; i++) {
-            threads.get(i).interrupt();
-            System.out.println(threads.get(i).getName() + " interrupted.");
-            Thread.sleep(500);
-        }
+       threads.forEach(Thread :: interrupt);
     }
 
     public static void main(String[] args) throws InterruptedException {
